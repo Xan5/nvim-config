@@ -11,6 +11,12 @@ Python3: ```choco install python3```
 Original template: LunarVim [github](https://github.com/LunarVim/nvim-basic-ide)  
 
 ## Install the config
+Set needed env variables in powershell
+
+```
+$env:HOME=C:\Users\{username}
+$env:XDG_CONFIG_HOME=C:\Users\{username}\.config
+```
 
 Make sure to remove or move your current `nvim` directory  
 
