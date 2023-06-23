@@ -94,6 +94,7 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 keymap({ "n", "v" }, "<C-a>", "ggVG", opts)
 -- Ctrl + s
 keymap({ "n", "v" }, "<C-s>", "<cmd>:w<CR>", opts)
+keymap({ "i" }, "<C-s>", "<Esc><cmd>:w<CR>", opts)
 
 keymap({ "n" }, "J", "mzJ`z", opts)
 
@@ -104,6 +105,7 @@ keymap("n", "<C-z>", "<C-u>zz", opts)
 -- replace regex
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- next/previous searched item
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
