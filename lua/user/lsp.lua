@@ -23,6 +23,7 @@ function M.config()
   local function lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
     local keymap = vim.api.nvim_buf_set_keymap
+
     keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
     keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -32,6 +33,7 @@ function M.config()
     keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
     keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
     keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+    keymap(bufnr, "v", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
     keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
     keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
     keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
@@ -60,7 +62,8 @@ function M.config()
     }
 
     if server == "rust_analyzer" then
-      require("rust-tools").setup {
+      local rt = require "rust-tools"
+      rt.setup {
         tools = {
           on_initialized = function()
             vim.cmd [[
@@ -69,7 +72,11 @@ function M.config()
           end,
         },
         server = {
-          on_attach = on_attach,
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            vim.keymap.set({ "n", "v" }, "<leader>K", rt.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set({ "n", "v" }, "<leader>A", rt.code_action_group.code_action_group, { buffer = bufnr })
+          end,
           capabilities = capabilities,
           settings = {
             ["rust-analyzer"] = {
@@ -83,7 +90,7 @@ function M.config()
           },
         },
       }
-  
+
       goto continue
     end
 
@@ -100,9 +107,9 @@ function M.config()
 
   local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignWarn",  text = "" },
+    { name = "DiagnosticSignHint",  text = "" },
+    { name = "DiagnosticSignInfo",  text = "" },
   }
 
   for _, sign in ipairs(signs) do
