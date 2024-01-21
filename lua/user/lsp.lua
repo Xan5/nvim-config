@@ -11,6 +11,14 @@ local M = {
       "simrat39/rust-tools.nvim",
       commit = "71d2cf67b5ed120a0e31b2c8adb210dd2834242f",
     },
+    {
+      "ziglang/zig.vim",
+      commit = "54c216e5306a5c3878a60596aacb94dca8652ab9",
+    },
+    {
+      "nvim-lua/completion-nvim",
+      commit = "87b0f86da3dffef63b42845049c648b5d90f1c4d",
+    }
   },
 }
 
@@ -60,6 +68,17 @@ function M.config()
       on_attach = on_attach,
       capabilities = capabilities,
     }
+
+    if server == "zls" then
+      local lspconfig = require('lspconfig')
+      local on_attach = function(_, bufnr)
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        require('completion').on_attach()
+      end
+      lspconfig.zls.setup {
+        on_attach = on_attach,
+      }
+    end
 
     if server == "rust_analyzer" then
       local rt = require "rust-tools"
