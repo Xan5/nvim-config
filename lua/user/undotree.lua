@@ -5,7 +5,7 @@ local M = {
 }
 
 function M.config()
-  vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+  vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "open undo tree" })
 end
 
 return M

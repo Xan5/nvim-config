@@ -32,9 +32,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Clear highlights
-keymap("n", "<leader>n", "<cmd>nohlsearch<CR>", opts)
-
 -- Close buffers
 keymap("n", "<S-q>", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
 
@@ -42,8 +39,10 @@ keymap("n", "<S-q>", ":bp<bar>sp<bar>bn<bar>bd<CR>", opts)
 keymap("v", "p", 'P', opts)
 
 -- Insert --
--- Press jk fast to enter
+-- Press jk fast to exit 
 keymap("i", "jk", "<ESC>", opts)
+-- Prest <C-c> to exit
+keymap("i", "<C-c>", "<Esc>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -80,11 +79,16 @@ keymap({ "n", "v", "x" }, "<C-x>", "<C-d>zz", opts)
 keymap({ "n", "v", "x" }, "<C-z>", "<C-u>zz", opts)
 
 -- replace regex
-keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", "<leader>@", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap({"v","x"}, "<leader>s", [[:s/\%V\<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- next/previous searched item
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
+
+-- Clear highlights
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- greatest remap ever
 keymap("x", "<leader>p", [["_dP]], opts)
@@ -94,9 +98,6 @@ keymap({ "n", "v" }, "<leader>y", [["+y]], opts)
 keymap("n", "<leader>Y", [["+Y]], opts)
 
 keymap({ "n", "v" }, "<leader>d", [["_d]], opst)
-
--- exit insert
-keymap("i", "<C-c>", "<Esc>", opts)
 
 -- Remap for dealing with word wrap
 -- keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

@@ -2,7 +2,7 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   commit = "177a775fd8b2a9de97011a43f13c74ad8d3739c8",
   event = "BufReadPost",
-  -- build = ':TSUpdate',
+  build = ':TSUpdate',
 }
 
 -- [[ Configure Treesitter ]]

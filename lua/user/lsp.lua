@@ -30,15 +30,8 @@ local M = {
       "hrsh7th/cmp-nvim-lsp",
       commit = "5af77f54de1b16c34b23cba810150689a3a90312",
     },
-    {
-      "simrat39/rust-tools.nvim",
-      commit = "676187908a1ce35ffcd727c654ed68d851299d3e",
-    },
-    {
-      "ziglang/zig.vim",
-      commit = "54c216e5306a5c3878a60596aacb94dca8652ab9",
-    },
   },
+  event = { "BufReadPre", "BufNewFile" },
 }
 
 -- local cmp_nvim_lsp = require "cmp_nvim_lsp"
@@ -71,13 +64,13 @@ function M.config()
     -- nmap("n", "gr", vim.lsp.buf.references(), "Goto References")
     nmap("n", "gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
     -- nmap("n", "gI", vim.lsp.buf.implementation(), "Goto Implementation")
-    nmap("n", "<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+    nmap("n", "gD", require("telescope.builtin").lsp_type_definitions, "Type Definition")
     nmap("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
     nmap("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
 
     -- See `:help K` for why this keymap
     nmap("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-    nmap("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+    nmap("n", "<leader>k", vim.lsp.buf.signature_help, "Signature Documentation")
     -- nmap("n", "<leader>ls", vim.lsp.buf.signature_help, "Signature help")
     nmap("n", "<leader>lq", vim.diagnostic.setloclist, "Set loc list")
 
@@ -90,7 +83,7 @@ function M.config()
     end, "Workspace List Folders")
 
 
-    nmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics open float")
+    -- nmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", "Diagnostics open float")
     nmap("n", "<leader>li", "<cmd>LspInfo<cr>")
     nmap("n", "<leader>lI", "<cmd>Mason<cr>")
     nmap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Diagnostics down")
@@ -156,48 +149,6 @@ function M.config()
         on_attach = on_attach,
         capabilities = capabilities,
       }
-
-      if server_name == "zls" then
-        local lspconfig = require("lspconfig")
-        local on_attach_zls = function(_, bufnr)
-          vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-          require("completion").on_attach()
-        end
-        lspconfig.zls.setup {
-          on_attach = on_attach_zls,
-        }
-      end
-
-      if server_name == "rust_analyzer" then
-        local rt = require "rust-tools"
-        rt.setup {
-          tools = {
-            on_initialized = function()
-              vim.cmd [[
-              autocmd BufEnter,CursorHold,InsertLeave,BufWritePost *.rs silent! lua vim.lsp.codelens.refresh()
-            ]]
-            end,
-          },
-          server = {
-            on_attach = function(client, bufnr)
-              on_attach(client, bufnr)
-              vim.keymap.set({ "n", "v" }, "<leader>K", rt.hover_actions.hover_actions, { buffer = bufnr })
-              vim.keymap.set({ "n", "v" }, "<leader>A", rt.code_action_group.code_action_group, { buffer = bufnr })
-            end,
-            capabilities = capabilities,
-            settings = {
-              ["rust-analyzer"] = {
-                lens = {
-                  enable = true,
-                },
-                checkOnSave = {
-                  command = "clippy",
-                },
-              },
-            },
-          },
-        }
-      end
 
       require("lspconfig")[server_name].setup {
         capabilities = capabilities,
