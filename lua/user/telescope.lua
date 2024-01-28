@@ -103,7 +103,20 @@ function M.config()
   vim.keymap.set('n', '<leader>fG', ':LiveGrepGitRoot<cr>', { desc = 'Search by Grep on Git Root' })
   vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Search Diagnostics' })
   vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Search Resume' })
--- vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>")
+
+  -- Enable project_nvim
+  local project = require "project_nvim"
+  project.setup {
+    -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
+    detection_methods = { "pattern" },
+    --
+    -- patterns used to detect root dir, when **"pattern"** is in detection_methods
+    patterns = { ".git", "Makefile", "package.json" },
+  }
+
+  local telescope = require "telescope"
+  telescope.load_extension "projects"
+  vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>")
 end
 
 return M
