@@ -11,30 +11,31 @@ local M = {
   },
 }
 
-local actions = require "telescope.actions"
---
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-  defaults = {
-    prompt_prefix = " ",
-    selection_caret = " ",
-    path_display = { "smart" },
-    file_ignore_patterns = { ".git/", "node_modules" },
-    mappings = {
-      i = {
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
 
 function M.config()
+  local actions = require "telescope.actions"
+  --
+  -- [[ Configure Telescope ]]
+  -- See `:help telescope` and `:help telescope.setup()`
+  require('telescope').setup {
+    defaults = {
+      prompt_prefix = " ",
+      selection_caret = " ",
+      path_display = { "smart" },
+      file_ignore_patterns = { ".git/", "node_modules" },
+      mappings = {
+        i = {
+          ["<Down>"] = actions.move_selection_next,
+          ["<Up>"] = actions.move_selection_previous,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ['<C-u>'] = false,
+          ['<C-d>'] = false,
+        },
+      },
+    },
+  }
+
   -- Enable telescope fzf native, if installed
   pcall(require('telescope').load_extension, 'fzf')
 

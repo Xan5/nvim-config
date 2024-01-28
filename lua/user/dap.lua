@@ -21,10 +21,10 @@ local M = {
     },
 
     -- Add your own debuggers here
-    {
-      "leoluz/nvim-dap-go",
-      commit = "a5cc8dcad43f0732585d4793deb02a25c4afb766",
-    },
+    -- {
+    --   "leoluz/nvim-dap-go",
+    --   commit = "a5cc8dcad43f0732585d4793deb02a25c4afb766",
+    -- },
   }
 }
 
