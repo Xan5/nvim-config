@@ -8,7 +8,9 @@ Font install: ```choco install nerd-fonts-delugiamono-complete```
 Ripgrep for telescope: ```choco install ripgrep```  
 Python3: ```choco install python3```  
 
-Original template: LunarVim [github](https://github.com/LunarVim/nvim-basic-ide)  
+Used templates:
+- LunarVim [github](https://github.com/LunarVim/nvim-basic-ide)  
+- Kickstarter [github](https://github.com/nvim-lua/kickstart.nvim)  
 
 ## Install the config
 Set needed env variables in powershell
@@ -29,7 +31,7 @@ Run `nvim` and wait for the plugins to be installed
 
 Reopen it after it does it's thing.  
 
-Run `:MasonInstall rust-analyzer codelldb` and wait till installed
+Run `:MasonInstall zls rust-analyzer codelldb` and wait till installed
 
 ```
 :checkhealth
@@ -37,12 +39,4 @@ Run `:MasonInstall rust-analyzer codelldb` and wait till installed
 
 ---
 
-## Additional Plugins
-
-- [Harpoon](https://github.com/ThePrimeagen/harpoon)
-- [Undotree](https://github.com/mbbill/undotree)
-- [Fugitive](https://github.com/tpope/vim-fugitive)
-
----
-
-### *Updated for 0.9 NEOVIM*
+### *Updated for 0.9.5 NEOVIM*

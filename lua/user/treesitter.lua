@@ -1,44 +1,85 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  commit = "226c1475a46a2ef6d840af9caa0117a439465500",
+  commit = "177a775fd8b2a9de97011a43f13c74ad8d3739c8",
   event = "BufReadPost",
-  dependencies = {
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "VeryLazy",
-      commit = "729d83ecb990dc2b30272833c213cc6d49ed5214",
-    },
-    {
-      "nvim-tree/nvim-web-devicons",
-      event = "VeryLazy",
-      commit = "0568104bf8d0c3ab16395433fcc5c1638efc25d4"
-    },
-  },
+  -- build = ':TSUpdate',
 }
-function M.config()
-  local treesitter = require "nvim-treesitter"
-  local configs = require "nvim-treesitter.configs"
 
-  configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "zig", "rust" }, -- put the language you want in this array
-    -- ensure_installed = "all", -- one of "all" or a list of languages
-    ignore_install = { "" },                                                       -- List of parsers to ignore installing
-    sync_install = false,                                                          -- install languages synchronously (only applied to `ensure_installed`)
+-- [[ Configure Treesitter ]]
+-- See `:help nvim-treesitter`
+-- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+-- function M.config()
+vim.defer_fn(function()
+  require('nvim-treesitter.configs').setup {
+    -- Add languages to be installed here that you want installed for treesitter
+    ensure_installed = { 'lua', 'zig', 'rust',  'vimdoc', 'vim', 'bash', "markdown", "markdown_inline" }, -- put the language you want in this array
+    -- ensure_installed = { 'c', 'cpp', 'go', 'lua', 'zig', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', "markdown", "markdown_inline", "python" }, -- put the language you want in this array
 
-    highlight = {
-      enable = true,       -- false will disable the whole extension
-      disable = { "css" }, -- list of language that will be disabled
-    },
-    autopairs = {
+    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    auto_install = false,
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+    -- List of parsers to ignore installing
+    ignore_install = {},
+    -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
+    modules = {},
+    autopairs = { enable = true, },
+    highlight = { enable = true },
+    indent = { enable = true },
+    incremental_selection = {
       enable = true,
+      keymaps = {
+        init_selection = '<c-space>',
+        node_incremental = '<c-space>',
+        scope_incremental = '<c-s>',
+        node_decremental = '<M-space>',
+      },
     },
-    indent = { enable = true, disable = { "python", "css" } },
-
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ['aa'] = '@parameter.outer',
+          ['ia'] = '@parameter.inner',
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          [']m'] = '@function.outer',
+          [']]'] = '@class.outer',
+        },
+        goto_next_end = {
+          [']M'] = '@function.outer',
+          [']['] = '@class.outer',
+        },
+        goto_previous_start = {
+          ['[m'] = '@function.outer',
+          ['[['] = '@class.outer',
+        },
+        goto_previous_end = {
+          ['[M'] = '@function.outer',
+          ['[]'] = '@class.outer',
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ['<leader>a'] = '@parameter.inner',
+        },
+        swap_previous = {
+          ['<leader>A'] = '@parameter.inner',
+        },
+      },
     },
   }
-end
+end, 0)
 
 return M

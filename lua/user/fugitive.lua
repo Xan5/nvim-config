@@ -1,6 +1,6 @@
 local M = {
   "tpope/vim-fugitive",
-  commit = "43f18ab9155c853a84ded560c6104e6300ad41da",
+  commit = "854a8df0d06b8d3fcb30fa7f2b08c62b553eee3b",
   event = "Bufenter",
 }
 
