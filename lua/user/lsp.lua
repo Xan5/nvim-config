@@ -5,11 +5,11 @@ local M = {
     {
       "williamboman/mason.nvim",
       config = true,
-      commit = "dcd0ea30ccfc7d47e879878d1270d6847a519181",
+      commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10",
     },
     {
       "williamboman/mason-lspconfig.nvim",
-      commit = "b9084b1f42f790d6230dc66dbcb6bcc35b148552",
+      commit = "273fdde8ac5e51f3a223ba70980e52bbc09d9f6f",
     },
 
     -- Useful status updates for LSP
@@ -114,7 +114,7 @@ function M.config()
     -- clangd = {},
     -- gopls = {},
     -- pyright = {},
-    rust_analyzer = {},
+    -- rust_analyzer = {},
     zls = {},
     -- tsserver = {},
     -- html = { filetypes = { "html", "twig", "hbs"} },

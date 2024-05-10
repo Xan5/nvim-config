@@ -13,7 +13,7 @@ local M = {
     -- Installs the debug adapters for you
     {
       "williamboman/mason.nvim",
-      commit = "dcd0ea30ccfc7d47e879878d1270d6847a519181",
+      commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10",
     },
     {
       "jay-babu/mason-nvim-dap.nvim",
