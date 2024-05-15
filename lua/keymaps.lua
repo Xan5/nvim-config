@@ -81,14 +81,14 @@ keymap({ "n", "v", "x" }, "<C-z>", "<C-u>zz", opts)
 -- replace regex
 keymap("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap("n", "<leader>@", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-keymap({"v","x"}, "<leader>s", [[:s/\%V\<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap({"v","x"}, "<leader>s", [[:s/\%V<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Close buffer without closing split
 keymap("n", "<leader>w", "<cmd>bp|bd #<CR>", { desc = "Close Buffer; Retain Split" })
 
 -- Navigate between quickfix items
-keymap("n", "<leader>h", "<cmd>cnext<CR>zz", { desc = "Forward qfixlist" })
-keymap("n", "<leader>l", "<cmd>cprev<CR>zz", { desc = "Backward qfixlist" })
+keymap("n", "]q", "<cmd>cnext<CR>zz", { desc = "Forward qfixlist" })
+keymap("n", "[q", "<cmd>cprev<CR>zz", { desc = "Backward qfixlist" })
 
 -- Navigate between location list items
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Forward location list" })
@@ -101,8 +101,8 @@ keymap("n", "N", "Nzzzv", opts)
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
-keymap({"n", "o", "x"}, "<s-h>", "^", { desc = "Jump to beginning of line" })
-keymap({"n", "o", "x"}, "<s-l>", "g_", { desc = "Jump to end of line" })
+-- keymap({"n", "o", "x"}, "<s-h>", "^", { desc = "Jump to beginning of line" })
+-- keymap({"n", "o", "x"}, "<s-l>", "g_", { desc = "Jump to end of line" })
 
 -- Search for highlighted text in buffer
 keymap("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
