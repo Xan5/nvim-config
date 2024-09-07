@@ -12,9 +12,15 @@ local M = {
   },
 }
 
-
 function M.config()
   local harpoon = require("harpoon")
+  harpoon.config.settings = {
+    save_on_toggle = true,
+    sync_on_ui_close = false,
+    key = function()
+      return vim.loop.cwd()
+    end,
+  }
   harpoon:setup()
 
   vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "add file to quick menu" })
