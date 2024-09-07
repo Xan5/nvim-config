@@ -1,6 +1,6 @@
 local M = {
   "lewis6991/gitsigns.nvim",
-  commit = "c5ff7628e19a47ec14d3657294cc074ecae27b99",
+  commit = "1ef74b546732f185d0f806860fa5404df7614f28",
   event = "BufReadPre",
 }
 

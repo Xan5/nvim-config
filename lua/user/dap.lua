@@ -1,23 +1,27 @@
 local M = {
   "mfussenegger/nvim-dap",
-  commit = "9adbfdca13afbe646d09a8d7a86d5d031fb9c5a5",
+  commit = "20a4859ebde1c9bc8e96f8cc11a20667e7fdd516",
   event = "VeryLazy",
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     {
       "rcarriga/nvim-dap-ui",
-      commit = "d845ebd798ad1cf30aa4abd4c4eff795cdcfdd4f",
+      commit = "1c351e4e417d4691da12948b6ecf966936a56d28",
     },
 
     -- Installs the debug adapters for you
     {
       "williamboman/mason.nvim",
-      commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10",
+      commit = "e2f7f9044ec30067bc11800a9e266664b88cda22",
     },
     {
       "jay-babu/mason-nvim-dap.nvim",
-      commit = "3614a39aae98ccd34124b072939d6283853b3dd2",
+      commit = "8b9363d83b5d779813cdd2819b8308651cec2a09",
+    },
+    {
+      "nvim-neotest/nvim-nio",
+      commit = "a428f309119086dc78dd4b19306d2d67be884eee",
     },
 
     -- Add your own debuggers here

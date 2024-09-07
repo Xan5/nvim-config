@@ -1,6 +1,6 @@
 local M = {
   "mbbill/undotree",
-  commit = "36ff7abb6b60980338344982ad4cdf03f7961ecd",
+  commit = "56c684a805fe948936cda0d1b19505b84ad7e065",
   event = "Bufenter",
 }
 

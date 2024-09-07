@@ -1,11 +1,11 @@
 local M = {
   "hrsh7th/nvim-cmp",
-  commit = "538e37ba87284942c1d76ed38dd497e54e65b891",
+  commit = "ae644feb7b67bf1ce4260c231d1d4300b19c6f30",
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
       "L3MON4D3/LuaSnip",
-      commit = "2dbef19461198630b3d7c39f414d09fb07d1fdd2",
+      commit = "45db5addf8d0a201e1cf247cae4cdce605ad3768",
     },
     {
       "saadparwaiz1/cmp_luasnip",
@@ -15,7 +15,7 @@ local M = {
     -- Adds LSP completion capabilities
     {
       "hrsh7th/cmp-nvim-lsp",
-      commit = "5af77f54de1b16c34b23cba810150689a3a90312",
+      commit = "39e2eda76828d88b773cc27a3f61d2ad782c922d",
     },
     {
       "hrsh7th/cmp-path",
@@ -29,7 +29,7 @@ local M = {
     -- Adds a number of user-friendly snippets
     {
       "rafamadriz/friendly-snippets",
-      commit = "aced40b66b7bae9bc2c37fd7b11841d54727a7b0",
+      commit = "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4",
     },
   },
   event = {

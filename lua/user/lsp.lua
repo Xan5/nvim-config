@@ -5,11 +5,11 @@ local M = {
     {
       "williamboman/mason.nvim",
       config = true,
-      commit = "751b1fcbf3d3b783fcf8d48865264a9bcd8f9b10",
+      commit = "e2f7f9044ec30067bc11800a9e266664b88cda22",
     },
     {
       "williamboman/mason-lspconfig.nvim",
-      commit = "273fdde8ac5e51f3a223ba70980e52bbc09d9f6f",
+      commit = "482350b050bd413931c2cdd4857443c3da7d57cb",
     },
 
     -- Useful status updates for LSP
@@ -17,18 +17,18 @@ local M = {
     {
       "j-hui/fidget.nvim",
       opts = {},
-      commit = "1d1042d418ee8cb70d68f1e38db639844331c093",
+      commit = "d855eed8a06531a7e8fd0684889b2943f373c469",
     },
 
     -- Additional lua configuration, makes nvim stuff amazing!
     {
       "folke/neodev.nvim",
-      commit = "64b2a51b02c6f2ae177c745e4d8bc801a339fe09",
+      commit = "46aa467dca16cf3dfe27098042402066d2ae242d",
     },
 
     {
       "hrsh7th/cmp-nvim-lsp",
-      commit = "5af77f54de1b16c34b23cba810150689a3a90312",
+      commit = "39e2eda76828d88b773cc27a3f61d2ad782c922d",
     },
   },
   event = { "BufReadPre", "BufNewFile" },

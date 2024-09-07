@@ -1,6 +1,6 @@
 local M = {
   "nvim-treesitter/nvim-treesitter-context",
-  commit = "f19766163c18515fb4d3c12d572bf9cba6cdb990",
+  commit = "e6cc783b74606d97ca9eff6494e3f5c2ca603a50",
   event = "Bufenter",
 }
 
