@@ -33,10 +33,12 @@ Reopen it after it does it's thing.
 
 Run `:MasonInstall zls rust-analyzer codelldb` and wait till installed
 
+For undotree to work you need to run `curl -LO https://github.com/neovim/deps/raw/21c5e8bdda33521a6ed497b315e03265a2785cbc/opt/diff.exe` inside neovim/bin
+
 ```
 :checkhealth
 ```
 
 ---
 
-### *Updated for 0.9.5 NEOVIM*
+### *Updated for 0.10.1 NEOVIM*
